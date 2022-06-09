@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
@@ -14,16 +15,14 @@ import fr.fms.entities.Category;
 
 @SpringBootApplication
 public class SpringShopJpa1Application implements CommandLineRunner {
+	
 	@Autowired
-	private CategoryRepository categoryRepository;
-
-	@Autowired
-	private ArticleRepository articleRepository;
-
+    private IBusinessImpl business;
 	Scanner sc = new Scanner(System.in);
 
 	private void displayAllArticles() {
-		for (Article article : articleRepository.findAll()) {
+		
+		for (Article article : business.getAllArticles()) {
 			System.out.println(article);
 
 		}
@@ -52,14 +51,16 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 
 		System.out.println("Bienvenue dans notre shop. Que souhaitez-vous faire ?");
 		System.out.println("1 - Afficher tous les articles");
-		while (!sc.hasNextInt())
-			sc.next();
+		System.out.println("2 - Ajouter un article");
+		System.out.println("3 - Supprimer un article");
+		while (!sc.hasNextInt()) sc.next();
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:
 			displayAllArticles();
 			break;
-
+		case 2:
+			break;
 		}
 	}
 
