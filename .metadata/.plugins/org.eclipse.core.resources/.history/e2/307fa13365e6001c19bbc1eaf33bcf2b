@@ -1,0 +1,7 @@
+package fr.fms.dao;
+
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
+public interface UserDao extends IEntityDao<User, Integer> {
+
+}

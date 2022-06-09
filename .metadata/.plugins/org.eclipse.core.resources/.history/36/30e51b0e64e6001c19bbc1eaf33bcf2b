@@ -1,0 +1,10 @@
+package fr.fms.bdd;
+
+import java.sql.Connection;
+
+public interface Dao<T> {
+	public Connection connection =
+			public void create(T obj);
+	
+
+}

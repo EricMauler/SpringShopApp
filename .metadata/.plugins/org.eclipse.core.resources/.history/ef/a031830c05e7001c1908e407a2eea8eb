@@ -1,0 +1,49 @@
+package fr.fms.entities;
+
+import java.util.Collection;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
+@Entity
+public class Category{
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Long id;
+	private String Name;
+	
+//	@OneToMany(mappedBy= "category")
+//	private Collection<Article>articles;
+	
+	public Category(String name) {
+		this.Name = name;
+	}
+	
+	public Category() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", Name=" + Name + "]";
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+}
