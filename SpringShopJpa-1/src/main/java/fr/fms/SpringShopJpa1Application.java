@@ -19,14 +19,35 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 	@Autowired
     private IBusinessImpl business;
 	Scanner sc = new Scanner(System.in);
+	
+
+	private void addArticle() {
+		System.out.println("saisissez le nom de l'article à ajouter");
+		String name = sc.next();
+		System.out.println("saisissez la marque de l'article");
+		String brand = sc.next();
+		System.out.println("saisissez le prix de l'article");
+		double price = sc.nextDouble();
+		
+		
+		business.save(name, brand, price);
+		
+	}
 
 	private void displayAllArticles() {
 		
 		for (Article article : business.getAllArticles()) {
 			System.out.println(article);
 
+		} }
+		
+		private void displayAllCategories() {
+			for (Category category : business.getAllCategories()) {
+				System.out.println(category);
+			}
+			
 		}
-	}
+
 
 	public static void main(String[] args) {
 
@@ -53,6 +74,9 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		System.out.println("1 - Afficher tous les articles");
 		System.out.println("2 - Ajouter un article");
 		System.out.println("3 - Supprimer un article");
+		System.out.println("4 - Modifier un article");
+		System.out.println("5 - Rechercher un article");
+		System.out.println("6 - afficher la liste des catégories");
 		while (!sc.hasNextInt()) sc.next();
 		int choice = sc.nextInt();
 		switch (choice) {
@@ -60,9 +84,14 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 			displayAllArticles();
 			break;
 		case 2:
+			addArticle();
 			break;
+		case 6:
+			displayAllCategories();
 		}
 	}
+
+	
 
 }
 
