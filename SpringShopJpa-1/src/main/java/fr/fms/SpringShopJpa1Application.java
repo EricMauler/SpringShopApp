@@ -19,6 +19,7 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 	@Autowired
 	private IBusinessImpl business;
 	Scanner sc = new Scanner(System.in);
+	int menu = 1;
 
 	private void addArticle() {
 		System.out.println("Saisissez le nom de l'article à ajouter");
@@ -69,14 +70,23 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 	}
 
 	private void readOneArticle() {
-		
+		System.out.println("Quel article voulez-vous consulter ?");
+		String description = sc.next();
+       
+       System.out.println(business.readOneArticle(description));
 	}
-	
+
 	private void displayAllCategories() {
 		for (Category category : business.getAllCategories()) {
 			System.out.println(category);
 		}
 
+	}
+
+	private void addCategory() {
+		System.out.println("Veuillez saisir le nom de la nouvelle catégorie");
+		String name = sc.next();
+		business.saveCategory(name);
 	}
 
 	public static void main(String[] args) {
@@ -99,43 +109,67 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 //		articleRepository.save(new Article("R510", "Asus", 600, pc));
 
 //		articleRepository.deleteById((long) 2);
-
+		
+		System.out.println();
 		System.out.println("Bienvenue dans notre shop. Que souhaitez-vous faire ?");
 		System.out.println();
-		System.out.println("1 - Afficher tous les articles");
-		System.out.println("2 - Ajouter un article");
-		System.out.println("3 - Supprimer un article");
-		System.out.println("4 - Modifier un article");
-		System.out.println("5 - Rechercher un article");
-		System.out.println("6 - afficher la liste des catégories");
-		System.out.println("7 - Ajouter une catégorie");
-		System.out.println("8 - Supprimer une catégorie");
-		System.out.println("9 - Modifier une catégorie");
-		System.out.println("0 - Quitter");
-		while (!sc.hasNextInt())
-			sc.next();
-		int choice = sc.nextInt();
-		switch (choice) {
-		case 1:
-			displayAllArticles();
-			break;
-		case 2:
-			addArticle();
-			break;
-		case 3:
-			deleteArticle();
-			break;
-		case 4:
-			modifyArticle();
-			break;
-		case 5:
-			readOneArticle();
-		case 6:
-			displayAllCategories();
-			break;
+
+		while (menu == 1) {
+
+			System.out.println();
+			System.out.println("Que souhaitez-vous faire ?");
+			System.out.println();
+			System.out.println("1 - Afficher tous les articles");
+			System.out.println("2 - Ajouter un article");
+			System.out.println("3 - Supprimer un article");
+			System.out.println("4 - Modifier un article");
+			System.out.println("5 - Rechercher un article");
+			System.out.println("6 - Afficher la liste des catégories");
+			System.out.println("7 - Ajouter une catégorie");
+			System.out.println("8 - Supprimer une catégorie");
+			System.out.println("9 - Modifier une catégorie");
+			System.out.println("0 - Quitter");
+
+			while (!sc.hasNextInt())
+				sc.next();
+			int choice = sc.nextInt();
+			switch (choice) {
+			case 1:
+				displayAllArticles();
+				break;
+			case 2:
+				addArticle();
+				break;
+			case 3:
+				deleteArticle();
+				break;
+			case 4:
+				modifyArticle();
+				break;
+			case 5:
+				readOneArticle();
+				break;
+			case 6:
+				displayAllCategories();
+				break;
+			case 7:
+				addCategory();
+
+			case 0:
+				exit();
+				break;
+			default:
+				System.out.println("mauvaise saisie");
+			}
 		}
 	}
 
+	private void exit() {
+		System.out.println();
+		System.out.println("Aurevoir");
+		menu = 0;
+		
+	}
 }
 
 //	for (Article article : articleRepository.findByDescriptionAndBrand("S9", "Samsung")) {

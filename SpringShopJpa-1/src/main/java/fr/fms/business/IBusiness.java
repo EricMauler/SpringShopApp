@@ -22,4 +22,7 @@ public interface IBusiness {
 	Article save(String name, String brand, double price, Category idCat);
 
 	Article save(String name, String brand, double price, long idCat);
-}
+	
+	public void saveCategory(String name);
+
+	public List<Article> readOneArticle(String description); }

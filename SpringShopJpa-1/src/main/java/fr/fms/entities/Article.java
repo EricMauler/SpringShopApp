@@ -45,6 +45,10 @@ public class Article implements Serializable {
 	 this.setPrice(price); 
 	}
 	
+	public Article(String description) {
+		this.description = description;
+	}
+	
 	public Article() {
 		
 	}
