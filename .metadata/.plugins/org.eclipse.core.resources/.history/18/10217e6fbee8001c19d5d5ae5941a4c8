@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.ArticleRepository;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
@@ -69,8 +71,8 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 	private void readOneArticle() {
 		System.out.println("Quel article voulez-vous consulter ?");
 		String description = sc.next();
-
-		System.out.println(business.readOneArticle(description));
+       
+       System.out.println(business.readOneArticle(description));
 	}
 
 	private void displayAllCategories() {
@@ -85,7 +87,7 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		String name = sc.next();
 		business.saveCategory(name);
 	}
-
+	
 	private void modifyCategory() {
 		System.out.println("Saisissez l'id de la catégorie que vous souhaitez modifier :");
 		displayAllCategories();
@@ -93,7 +95,7 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		System.out.println("Saisissez le nom de la catégorie à modifier");
 		String name = sc.next();
 		business.modifyCategory(id, name);
-
+		
 	}
 
 	public static void main(String[] args) {
@@ -116,7 +118,7 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 //    	business.save("R510", "Asus", 600, 2);
 
 //		articleRepository.deleteById((long) 2);
-
+		
 		System.out.println();
 		System.out.println("Bienvenue dans notre shop. Que souhaitez-vous faire ?");
 		System.out.println();
@@ -162,7 +164,7 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 			case 7:
 				addCategory();
 				break;
-			case 8:
+			case 8:	
 				modifyCategory();
 				break;
 			case 9:
@@ -177,15 +179,17 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		}
 	}
 
+
+
 	private void deleteCategory() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	private void exit() {
 		System.out.println();
 		System.out.println("Aurevoir");
 		menu = 0;
-
+		
 	}
 }
