@@ -44,26 +44,8 @@ public class IBusinessImpl implements IBusiness {
 
 	}
 
-	@Override
-	public Article save(String name, String brand, double price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Article save(String name, String brand, double price, Category idCat) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void modifyArticle(long id, String name, String brand, double price) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void saveCategory(String name) {
-		categoryRepository.save(new Category(name));
+	public void saveCategory(long id, String name) {
+		categoryRepository.save(new Category(id, name));
 		
 	}
 
@@ -71,5 +53,17 @@ public class IBusinessImpl implements IBusiness {
 		return articleRepository.findByDescription(description);
 		
 	}
+
+	public void modifyCategory(long id, String name) {
+		categoryRepository.save(new Category(id, name));
+		
+	}
+
+	@Override
+	public Category saveCategory(String name) {
+		return categoryRepository.save(new Category(name));
+		
+	}
+
 
 }

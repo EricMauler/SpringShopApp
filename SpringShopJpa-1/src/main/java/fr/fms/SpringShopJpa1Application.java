@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import fr.fms.business.IBusinessImpl;
-import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.ArticleRepository;
+import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
@@ -88,6 +87,16 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		String name = sc.next();
 		business.saveCategory(name);
 	}
+	
+	private void modifyCategory() {
+		System.out.println("Saisissez l'id de la catégorie que vous souhaitez modifier :");
+		displayAllCategories();
+		long id = sc.nextInt();
+		System.out.println("Saisissez le nom de la catégorie à modifier");
+		String name = sc.next();
+		business.modifyCategory(id, name);
+		
+	}
 
 	public static void main(String[] args) {
 
@@ -96,17 +105,17 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		Category tablet = categoryRepository.save(new Category("Tablet"));
-//		Category pc = categoryRepository.save(new Category("PC"));
-		// Category smartphone = categoryRepository.save(new Category("Smartphone"));
-		// articleRepository.save(new Article(4, "S9", "Samsung", 250, smartphone));
-//		articleRepository.save(new Article("S8", "Samsung", 250, smartphone));
-//		articleRepository.save(new Article("Galaxy", "Samsung", 350, smartphone));
-//		articleRepository.save(new Article("S10", "Samsung", 500, smartphone));
-//		articleRepository.save(new Article("MI10", "Xiaomi", 100, smartphone));
-//		articleRepository.save(new Article("GalaxyTab", "Samsung", 450, tablet));-
-//		articleRepository.save(new Article("IPad", "Apple", 350, tablet));
-//		articleRepository.save(new Article("R510", "Asus", 600, pc));
+//		Category tablet = business.saveCategory("Tablet");
+//		Category pc = business.saveCategory("PC");
+//		Category smartphone = business.saveCategory("Smartphone");
+//	    business.save("S9", "Samsung", 250, 3);
+//	    business.save("S8", "Samsung", 250, 3);
+//		business.save("Galaxy", "Samsung", 350, 3);
+//		business.save("S10", "Samsung", 500, 3);
+//		business.save("MI10", "Xiaomi", 100, 3);
+//		business.save("GalaxyTab", "Samsung", 450, 1);
+//		business.save("IPad", "Apple", 350, 1);
+//    	business.save("R510", "Asus", 600, 2);
 
 //		articleRepository.deleteById((long) 2);
 		
@@ -126,8 +135,8 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 			System.out.println("5 - Rechercher un article");
 			System.out.println("6 - Afficher la liste des catégories");
 			System.out.println("7 - Ajouter une catégorie");
-			System.out.println("8 - Supprimer une catégorie");
-			System.out.println("9 - Modifier une catégorie");
+			System.out.println("8 - Modifier une catégorie");
+			System.out.println("9 - Supprimer une catégorie");
 			System.out.println("0 - Quitter");
 
 			while (!sc.hasNextInt())
@@ -154,6 +163,12 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 				break;
 			case 7:
 				addCategory();
+				break;
+			case 8:	
+				modifyCategory();
+				break;
+			case 9:
+				deleteCategory();
 
 			case 0:
 				exit();
@@ -164,6 +179,13 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		}
 	}
 
+
+
+	private void deleteCategory() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void exit() {
 		System.out.println();
 		System.out.println("Aurevoir");
@@ -171,17 +193,3 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		
 	}
 }
-
-//	for (Article article : articleRepository.findByDescriptionAndBrand("S9", "Samsung")) {
-//	 System.out.println(article);
-//		}
-//		for (Article article : articleRepository.findByBrandAndPriceGreaterThan("Samsung", 300)) {
-//			 System.out.println(article);
-//				}
-//		for (Article article : articleRepository.searchArticles("sung", 200)) {
-//			 System.out.println(article);
-//				}
-//		for (Category category : categoryRepository.findAllByOrderByNameAsc()) {
-//			System.out.println(category);
-//			
-//		}

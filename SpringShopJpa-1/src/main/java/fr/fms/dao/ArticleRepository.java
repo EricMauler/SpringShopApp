@@ -20,7 +20,4 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 	public List<Article> findByDescription(String description);
 	
-	
-	
-	//public List<Article> findByCategoryId(Long categoryId);
 }

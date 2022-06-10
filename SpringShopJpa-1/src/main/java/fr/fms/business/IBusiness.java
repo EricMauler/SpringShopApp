@@ -9,20 +9,17 @@ public interface IBusiness {
 
 	public List<Article> getAllArticles();
 	
-	public Article save(String name, String brand, double price);
-	
 	public List<Category> getAllCategories();
-	
-	//public Article save(String name, String brand, double price, int id);
 	
 	public void deleteArticle (long id);
 
-	public void modifyArticle(long id, String name, String brand, double price);
+	public void modifyArticle(long id, String name, String brand, double price, long idCat);
 
-	Article save(String name, String brand, double price, Category idCat);
-
-	Article save(String name, String brand, double price, long idCat);
+	public Article save(String name, String brand, double price, long idCat);
 	
-	public void saveCategory(String name);
+	public Category saveCategory(String name);
 
-	public List<Article> readOneArticle(String description); }
+	public List<Article> readOneArticle(String description); 
+	
+    public void modifyCategory(long id, String name);
+}

@@ -18,12 +18,17 @@ public class Category{
 	@OneToMany(mappedBy= "category")
 	private Collection<Article>articles;
 	
+	public Category() {
+		
+	}
+	
 	public Category(String name) {
 		this.name = name;
 	}
 	
-	public Category() {
-		
+	public Category(long id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 	
 	public Category(long idCat) {
