@@ -22,6 +22,8 @@ public class Article implements Serializable {
 	@ManyToOne
 	private Category category;
 	
+
+	
 	public Article (long id, String description, String brand, double price, Category category) {
 		this.id = id;
 		this.description = description;
@@ -47,9 +49,26 @@ public class Article implements Serializable {
 		
 	}
 
+	public Article(String description, String brand, double price, long idCat) {
+		super();
+		this.description = description;
+		this.brand = brand;
+		this.price = price;
+		this.category = new Category (idCat);
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", description=" + description + ", brand=" + brand + ", price=" + price + "]";
+	}
+
+	public Article(Long id, String description, String brand, double price, long idCat) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.brand = brand;
+		this.price = price;
+		this.category = new Category (idCat);
 	}
 
 	public Long getId() {

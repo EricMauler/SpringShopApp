@@ -11,7 +11,7 @@ import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 @Service
-public class IBusinessImpl implements IBusiness{
+public class IBusinessImpl implements IBusiness {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -23,13 +23,43 @@ public class IBusinessImpl implements IBusiness{
 	public List<Article> getAllArticles() {
 		return articleRepository.findAll();
 	}
+
 	@Override
-	public Article save(String name, String brand, double price) {
-		return articleRepository.save(new Article(name, brand, price));
-		
+	public Article save(String name, String brand, double price, long idCat) {
+		return articleRepository.save(new Article(name, brand, price, idCat));
+
 	}
+
+	public void modifyArticle(long id, String name, String brand, double price, long idCat) {
+		articleRepository.save(new Article(id, name, brand, price, idCat));
+
+	}
+
 	public List<Category> getAllCategories() {
 		return categoryRepository.findAll();
 	}
+
+	public void deleteArticle(long id) {
+		articleRepository.deleteById((long) id);
+
+	}
+
+	@Override
+	public Article save(String name, String brand, double price) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Article save(String name, String brand, double price, Category idCat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void modifyArticle(long id, String name, String brand, double price) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
-	

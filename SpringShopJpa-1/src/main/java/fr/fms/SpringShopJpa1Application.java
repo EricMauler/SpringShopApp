@@ -15,39 +15,69 @@ import fr.fms.entities.Category;
 
 @SpringBootApplication
 public class SpringShopJpa1Application implements CommandLineRunner {
-	
+
 	@Autowired
-    private IBusinessImpl business;
+	private IBusinessImpl business;
 	Scanner sc = new Scanner(System.in);
-	
 
 	private void addArticle() {
-		System.out.println("saisissez le nom de l'article à ajouter");
+		System.out.println("Saisissez le nom de l'article à ajouter");
 		String name = sc.next();
-		System.out.println("saisissez la marque de l'article");
+		System.out.println("Saisissez la marque de l'article à ajouter");
 		String brand = sc.next();
-		System.out.println("saisissez le prix de l'article");
+		System.out.println("Saisissez le prix de l'article à ajouter");
 		double price = sc.nextDouble();
-		
-		
-		business.save(name, brand, price);
-		
+		System.out.println("Saisissez l'id de la catégorie de l'article à ajouter");
+		displayAllCategories();
+		long idCat = sc.nextLong();
+
+		business.save(name, brand, price, idCat);
+
+	}
+
+	private void deleteArticle() {
+		System.out.println("Saisissez l'id de l'article à supprimer");
+		displayAllArticles();
+		long id = sc.nextLong();
+		business.deleteArticle((long) id);
 	}
 
 	private void displayAllArticles() {
-		
+
 		for (Article article : business.getAllArticles()) {
 			System.out.println(article);
 
-		} }
+		}
+	}
+
+	private void modifyArticle() {
+		System.out.println("Saisissez l'id de l'article que vous souhaitez modifier :");
+		displayAllArticles();
+		long id = sc.nextInt();
+		System.out.println("Saisissez le nom de l'article à modifier");
+		String name = sc.next();
+		System.out.println("Saisissez la marque de l'article à modifier");
+		String brand = sc.next();
+		System.out.println("Saisissez le prix de l'article à modifier");
+		double price = sc.nextDouble();
+		System.out.println("Saisissez l'id de la catégorie de l'article à modifier");
+		displayAllCategories();
+		long idCat = sc.nextLong();
+
+		business.modifyArticle(id, name, brand, price, idCat);
+
+	}
+
+	private void readOneArticle() {
 		
-		private void displayAllCategories() {
-			for (Category category : business.getAllCategories()) {
-				System.out.println(category);
-			}
-			
+	}
+	
+	private void displayAllCategories() {
+		for (Category category : business.getAllCategories()) {
+			System.out.println(category);
 		}
 
+	}
 
 	public static void main(String[] args) {
 
@@ -71,13 +101,19 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 //		articleRepository.deleteById((long) 2);
 
 		System.out.println("Bienvenue dans notre shop. Que souhaitez-vous faire ?");
+		System.out.println();
 		System.out.println("1 - Afficher tous les articles");
 		System.out.println("2 - Ajouter un article");
 		System.out.println("3 - Supprimer un article");
 		System.out.println("4 - Modifier un article");
 		System.out.println("5 - Rechercher un article");
 		System.out.println("6 - afficher la liste des catégories");
-		while (!sc.hasNextInt()) sc.next();
+		System.out.println("7 - Ajouter une catégorie");
+		System.out.println("8 - Supprimer une catégorie");
+		System.out.println("9 - Modifier une catégorie");
+		System.out.println("0 - Quitter");
+		while (!sc.hasNextInt())
+			sc.next();
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:
@@ -86,12 +122,19 @@ public class SpringShopJpa1Application implements CommandLineRunner {
 		case 2:
 			addArticle();
 			break;
+		case 3:
+			deleteArticle();
+			break;
+		case 4:
+			modifyArticle();
+			break;
+		case 5:
+			readOneArticle();
 		case 6:
 			displayAllCategories();
+			break;
 		}
 	}
-
-	
 
 }
 

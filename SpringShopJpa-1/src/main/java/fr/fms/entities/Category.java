@@ -26,6 +26,10 @@ public class Category{
 		
 	}
 	
+	public Category(long idCat) {
+		this.id = idCat;
+	}
+
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", Name=" + name + "]";
